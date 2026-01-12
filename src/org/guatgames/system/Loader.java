@@ -32,6 +32,7 @@ public class Loader {
 
         stage.setTitle("Escena");
         stage.setScene(sc);
+        stage.setResizable(false);
         stage.show();
 
     }
@@ -45,6 +46,7 @@ public class Loader {
         Stage stage = getCurrentStage();
         stage.setTitle(title);
         stage.setScene(sc);
+        stage.setResizable(false);
         stage.show();
 
     }
@@ -61,6 +63,7 @@ public class Loader {
         stage.setTitle(title);
         stage.getIcons().add(new Image(Loader.class.getResourceAsStream(img)));
         stage.setScene(sc);
+        stage.setResizable(false);
         stage.show();
 
     }
@@ -73,7 +76,7 @@ public class Loader {
         this.currentStage = currentStage;
     }
 
-    public void alerta(Alert.AlertType tipo, String titulo, String msg) {
+    public void alert(Alert.AlertType tipo, String titulo, String msg) {
         Alert a = new Alert(tipo);
         a.setTitle(titulo);
         a.setHeaderText(null);
