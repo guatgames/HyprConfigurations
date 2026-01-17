@@ -17,7 +17,7 @@ import org.guatgames.objects.HyprBind;
 public class HyprConfigReader {
 
     // Regex para capturar: bind = MODIFICADOR, TECLA, DISPATCHER, PARAMETROS
-    private static final String BIND_REGEX = "^\\s*bind\\s*=\\s*([^,]+),\\s*([^,]+),\\s*([^,]+),\\s*(.*)$";
+    private static final String BIND_REGEX = "^\\s*bind[a-z]*\\s*=\\s*([^,]+),\\s*([^,]+),\\s*([^,]+),\\s*(.*)$";
 
     public List<HyprBind> getBinds(String path) {
         List<HyprBind> binds = new ArrayList<>();
