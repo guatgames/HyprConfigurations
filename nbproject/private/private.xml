@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/guatgames/NetBeansProjects/HyprConfigurations/src/org/guatgames/system/Main.java</file>
+            <file>file:/home/guatgames/NetBeansProjects/HyprConfigurations/src/org/guatgames/system/Loader.java</file>
+            <file>file:/home/guatgames/NetBeansProjects/HyprConfigurations/src/org/guatgames/controllers/HyprBindingsController.java</file>
         </group>
     </open-files>
 </project-private>

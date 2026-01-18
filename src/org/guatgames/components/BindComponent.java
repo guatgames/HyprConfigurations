@@ -1,60 +1,103 @@
 package org.guatgames.components;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import org.guatgames.objects.binds.AutoCompleteHandler;
+import org.guatgames.objects.binds.HyprDispatcher;
 
-public class bindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
+import java.util.List;
 
-    private TextField modifierField, keyField, dispatcherField, paramField;
+public class BindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
 
-    public bindComponent(String modifier, String key, String dispatcher, String param) {
-        // 1. Configuración del contenedor principal (el componente individual)
-        this.setSpacing(10);
-        this.setPadding(new Insets(15));
-        this.setStyle("-fx-background-color: #2e3440; -fx-background-radius: 10; -fx-border-color: #4c566a; -fx-border-radius: 10;");
+    private TextField bindField, modifierField, keyField, dispatcherField, paramField;
 
-        // Establecer límites de tamaño del componente
-        this.setMinSize(400, 150);
-        this.setMaxSize(600, 250);
+    public BindComponent(String bind,String modifier, String key, String dispatcher, String param) {
 
-        // 2. Crear un GridPane para organizar las 4 secciones
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
+        // Config for this object
+        //this.setMinSize(400, 50);
+        this.setMaxSize(700, 250);
+        this.setStyle("-fx-background-color: #005557; -fx-background-radius: 10; -fx-padding: 15;");
 
-        // 3. Inicializar campos
-        modifierField = new TextField(modifier);
-        keyField = new TextField(key);
-        dispatcherField = new TextField(dispatcher);
-        paramField = new TextField(param);
+        // Container to all be in a line
+        HBox row = new HBox(10); // Espacio de 10px entre campos
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setPadding(new Insets(10));
 
-        // Añadir etiquetas y campos al grid (Columna, Fila)
-        grid.add(new Label("Modifier:"), 0, 0);
-        grid.add(modifierField, 1, 0);
+        // Style for the fields
+        String fieldStyle = "-fx-background-color: #003d4d; " +
+                "-fx-text-fill: #00e6cf; " +
+                "-fx-border-color: #00e6cf; " +
+                "-fx-border-radius: 5;";
 
-        grid.add(new Label("Key:"), 0, 1);
-        grid.add(keyField, 1, 1);
+        // Create the fields
+        this.bindField = createStyledField(bind,"bind",fieldStyle);
+        this.modifierField = createStyledField(modifier, "Modifier", fieldStyle);
+        this.keyField = createStyledField(key, "Key", fieldStyle);
+        this.dispatcherField = createStyledField(dispatcher, "Dispatcher", fieldStyle);
+        this.paramField = createStyledField(param, "Param", fieldStyle);
 
-        grid.add(new Label("Dispatcher:"), 0, 2);
-        grid.add(dispatcherField, 1, 2);
+        // Delete button
+        Button delete = new Button();
+        Image trash = new Image("file:src/org/guatgames/images/delete.png");
+        ImageView view = new ImageView(trash);
+        view.setFitHeight(20);
+        view.setFitWidth(20);
+        view.setPreserveRatio(true);
+        delete.setOnAction(e -> {
+            Parent parent = this.getParent();
 
-        grid.add(new Label("Param:"), 0, 3);
-        grid.add(paramField, 1, 3);
+            if (parent instanceof Pane){
+                ((Pane) parent).getChildren().remove(this);
+            }
+        });
+        delete.setGraphic(view);
+        delete.setStyle("-fx-background-color: #003d4d; -fx-border-radius: 5;" +
+                "-fx-border-color: #b34a31; -fx-background-radius: 5;" +
+                "-fx-border-size: 2;");
+        delete.setOnMouseEntered(e -> {
+            delete.setCursor(Cursor.HAND);
+        });
 
-        // Hacer que los TextFields se expandan horizontalmente
-        GridPane.setHgrow(modifierField, Priority.ALWAYS);
-        GridPane.setHgrow(keyField, Priority.ALWAYS);
+        // Do the size grow proportionally
+        HBox.setHgrow(modifierField, Priority.ALWAYS);
+        HBox.setHgrow(keyField, Priority.ALWAYS);
+        HBox.setHgrow(dispatcherField, Priority.ALWAYS);
+        HBox.setHgrow(paramField, Priority.ALWAYS);
 
-        this.getChildren().add(grid);
+
+        row.getChildren().addAll(bindField, modifierField, keyField, dispatcherField, paramField, delete);
+
+        this.getChildren().add(row);
     }
 
-    public bindComponent() {
+    // Create fields easily
+    private TextField createStyledField(String value, String prompt, String style) {
+        TextField field = new TextField(value);
+        field.setPromptText(prompt);
+        field.setStyle(style);
+        return field;
     }
+
+    // This will have autocomplet for all fields except params
+    public void enableAutocomplete(List<HyprDispatcher> dispatchers) {
+        AutoCompleteHandler.setup(this.dispatcherField, dispatchers);
+    }
+
+    public BindComponent() {
+    }
+
+    public TextField getBindField() {return bindField; }
+
+    public void setBindField(TextField bindField) { this.bindField = bindField; }
 
     public TextField getModifierField() {
         return modifierField;
@@ -64,9 +107,7 @@ public class bindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
         this.modifierField = modifierField;
     }
 
-    public TextField getKeyField() {
-        return keyField;
-    }
+    public TextField getKeyField() { return keyField; }
 
     public void setKeyField(TextField keyField) {
         this.keyField = keyField;
@@ -80,9 +121,7 @@ public class bindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
         this.dispatcherField = dispatcherField;
     }
 
-    public TextField getParamField() {
-        return paramField;
-    }
+    public TextField getParamField() { return paramField; }
 
     public void setParamField(TextField paramField) {
         this.paramField = paramField;

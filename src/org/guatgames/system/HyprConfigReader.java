@@ -1,5 +1,5 @@
 
-package org.guatgames.controllers;
+package org.guatgames.system;
 
 /**
  *
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.guatgames.objects.HyprBind;
+import org.guatgames.objects.binds.HyprBind;
 
 public class HyprConfigReader {
 
-    // Regex para capturar: bind = MODIFICADOR, TECLA, DISPATCHER, PARAMETROS
-    private static final String BIND_REGEX = "^\\s*bind[a-z]*\\s*=\\s*([^,]+),\\s*([^,]+),\\s*([^,]+),\\s*(.*)$";
+    // Regex to catch: bind = MOD, KEY, DISPATCHER, PARAM
+    private static final String BIND_REGEX = "^\\s*(bind[a-z]*)\\s*=\\s*([^,]+),\\s*([^,]+),\\s*([^,]+),\\s*([^#\\n]+)(?:\\s*#.*)?$";
 
     public List<HyprBind> getBinds(String path) {
         List<HyprBind> binds = new ArrayList<>();
@@ -31,11 +31,13 @@ public class HyprConfigReader {
                 
                 if (matcher.find()) {
                     HyprBind bind = new HyprBind();
-                    bind.setModifier(matcher.group(1).trim());
-                    bind.setKey(matcher.group(2).trim());
-                    bind.setDispatcher(matcher.group(3).trim());
-                    bind.setParams(matcher.group(4).trim());
-                    
+                    // group(0) is the complete line
+                    bind.setBind(matcher.group(1).trim());
+                    bind.setModifier(matcher.group(2).trim());
+                    bind.setKey(matcher.group(3).trim());
+                    bind.setDispatcher(matcher.group(4).trim());
+                    bind.setParams(matcher.group(5).trim());
+
                     binds.add(bind);
                 }
             }

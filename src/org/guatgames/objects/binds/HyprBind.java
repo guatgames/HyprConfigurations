@@ -1,5 +1,5 @@
 
-package org.guatgames.objects;
+package org.guatgames.objects.binds;
 
 /**
  *

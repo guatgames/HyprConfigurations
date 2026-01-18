@@ -28,11 +28,10 @@ public class Loader {
         Scene sc = new Scene(loader.load());
 
         Stage stage = getCurrentStage();
-        stage.centerOnScreen();
-
         stage.setTitle("Escena");
         stage.setScene(sc);
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
 
     }
@@ -47,6 +46,7 @@ public class Loader {
         stage.setTitle(title);
         stage.setScene(sc);
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
 
     }
@@ -54,16 +54,17 @@ public class Loader {
     public void newScene(String path, String title, String img) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        //loader.setRoot(this);
 
         Scene sc = new Scene(loader.load());
 
         Stage stage = getCurrentStage();
-        stage.centerOnScreen();
 
         stage.setTitle(title);
         stage.getIcons().add(new Image(Loader.class.getResourceAsStream(img)));
         stage.setScene(sc);
         stage.setResizable(false);
+        stage.centerOnScreen();
         stage.show();
 
     }
@@ -76,9 +77,9 @@ public class Loader {
         this.currentStage = currentStage;
     }
 
-    public void alert(Alert.AlertType tipo, String titulo, String msg) {
+    public void alert(Alert.AlertType tipo, String title, String msg) {
         Alert a = new Alert(tipo);
-        a.setTitle(titulo);
+        a.setTitle(title);
         a.setHeaderText(null);
         a.setContentText(msg);
         a.show();

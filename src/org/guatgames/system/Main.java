@@ -1,11 +1,9 @@
 package org.guatgames.system;
 
 import java.io.IOException;
-import java.util.List;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.guatgames.controllers.HyprConfigReader;
-import org.guatgames.objects.HyprBind;
 
 /**
  *
@@ -26,15 +24,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-        HyprConfigReader reader = new HyprConfigReader();
-        List<HyprBind> list = reader.getBinds("/home/guatgames/NetBeansProjects/HyprConffigurrations/src/org/guatgames/system/hyprland.conf");
-        for(HyprBind i : list){
-            System.out.println(i.getModifier() + " " + i.getKey() + " " + i.getDispatcher() + " " + i.getParams());
-        }
-        
         launch(args);
-        
     }
 
 }

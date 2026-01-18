@@ -1,0 +1,20 @@
+[
+  {
+    "command": "exec",
+    "description": "Ejecuta una aplicación externa.",
+    "syntax": "exec, comando",
+    "help": "Ejemplo: exec, kitty o exec, wofi --show drun"
+  },
+  {
+    "command": "killactive",
+    "description": "Cierra la ventana activa.",
+    "syntax": "killactive",
+    "help": "No requiere parámetros adicionales."
+  },
+  {
+    "command": "movetoworkspace",
+    "description": "Mueve la ventana al escritorio especificado.",
+    "syntax": "movetoworkspace, ID",
+    "help": "ID puede ser un número (1-10) o un nombre."
+  }
+]
