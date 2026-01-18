@@ -21,10 +21,18 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="bindsContainer" hbarPolicy="NEVER" layoutX="252.0" layoutY="137.0" maxHeight="522.0" maxWidth="800.0" minHeight="400.0" minWidth="500.0" prefHeight="522.0" prefWidth="777.0" style="-fx-padding: 15; -fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #005f61; -fx-background: #005f61;" vbarPolicy="NEVER" />
+      <ScrollPane fx:id="bindsContainer" hbarPolicy="NEVER" layoutX="253.0" layoutY="165.0" maxHeight="522.0" maxWidth="800.0" minHeight="400.0" minWidth="500.0" prefHeight="522.0" prefWidth="777.0" style="-fx-padding: 15; -fx-border-radius: 20; -fx-background-radius: 20; -fx-background-color: #005f61; -fx-background: #005f61;" vbarPolicy="NEVER" />
       <Button fx:id="applyButton" ellipsisString="S" layoutX="66.0" layoutY="737.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="119.0" style="-fx-background-color: #005f61; -fx-background-radius: 5; -fx-border-radius: 5;" text="Apply" textFill="#f5f0f0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button alignment="CENTER" layoutX="941.0" layoutY="124.0" mnemonicParsing="false" onAction="#addNewBind" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #01b2a0; -fx-background-radius: 5; -fx-border-radius: 5;" text="+" textFill="#01897b">
+         <font>
+            <Font name="Adwaita Sans" size="30.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

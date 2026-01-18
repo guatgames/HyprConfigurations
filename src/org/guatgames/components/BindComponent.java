@@ -93,6 +93,61 @@ public class BindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
     }
 
     public BindComponent() {
+        // Config for this object
+        //this.setMinSize(400, 50);
+        this.setMaxSize(700, 250);
+        this.setStyle("-fx-background-color: #005557; -fx-background-radius: 10; -fx-padding: 15;");
+
+        // Container to all be in a line
+        HBox row = new HBox(10); // Espacio de 10px entre campos
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setPadding(new Insets(10));
+
+        // Style for the fields
+        String fieldStyle = "-fx-background-color: #003d4d; " +
+                "-fx-text-fill: #00e6cf; " +
+                "-fx-border-color: #00e6cf; " +
+                "-fx-border-radius: 5;";
+
+        // Create the fields
+        this.bindField = createStyledField("","bind",fieldStyle);
+        this.modifierField = createStyledField("", "Modifier", fieldStyle);
+        this.keyField = createStyledField("", "Key", fieldStyle);
+        this.dispatcherField = createStyledField("", "Dispatcher", fieldStyle);
+        this.paramField = createStyledField("", "Param", fieldStyle);
+
+        // Delete button
+        Button delete = new Button();
+        Image trash = new Image("file:src/org/guatgames/images/delete.png");
+        ImageView view = new ImageView(trash);
+        view.setFitHeight(20);
+        view.setFitWidth(20);
+        view.setPreserveRatio(true);
+        delete.setOnAction(e -> {
+            Parent parent = this.getParent();
+
+            if (parent instanceof Pane){
+                ((Pane) parent).getChildren().remove(this);
+            }
+        });
+        delete.setGraphic(view);
+        delete.setStyle("-fx-background-color: #003d4d; -fx-border-radius: 5;" +
+                "-fx-border-color: #b34a31; -fx-background-radius: 5;" +
+                "-fx-border-size: 2;");
+        delete.setOnMouseEntered(e -> {
+            delete.setCursor(Cursor.HAND);
+        });
+
+        // Do the size grow proportionally
+        HBox.setHgrow(modifierField, Priority.ALWAYS);
+        HBox.setHgrow(keyField, Priority.ALWAYS);
+        HBox.setHgrow(dispatcherField, Priority.ALWAYS);
+        HBox.setHgrow(paramField, Priority.ALWAYS);
+
+
+        row.getChildren().addAll(bindField, modifierField, keyField, dispatcherField, paramField, delete);
+
+        this.getChildren().add(row);
     }
 
     public TextField getBindField() {return bindField; }

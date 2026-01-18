@@ -1,0 +1,56 @@
+[
+  {
+    "command": "bind",
+    "description": "The standard binder. Executes a dispatcher when the key is pressed.",
+    "syntax": "bind = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bind = SUPER, Q, exec, kitty"
+  },
+  {
+    "command": "binde",
+    "description": "Repeat binder. Will repeat when held down.",
+    "syntax": "binde = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: binde = ALT, Up, resizeactive, 0 -20"
+  },
+  {
+    "command": "bindr",
+    "description": "Release binder. Will trigger on release of a key.",
+    "syntax": "bindr = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindr = SUPER, SUPER_L, exec, wofi"
+  },
+  {
+    "command": "bindi",
+    "description": "Ignore mods binder. Will ignore any modifiers and trigger regardless.",
+    "syntax": "bindi = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindi = , XF86AudioMute, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+  {
+    "command": "bindm",
+    "description": "Mouse binder. Used for binding mouse actions to dispatchers.",
+    "syntax": "bindm = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindm = SUPER, mouse:272, movewindow"
+  },
+  {
+    "command": "bindt",
+    "description": "Transparent binder. Will let the key event pass to the application as well.",
+    "syntax": "bindt = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindt = ALT, Tab, cyclenext"
+  },
+  {
+    "command": "bindl",
+    "description": "Locked binder. Works even if the screen is locked.",
+    "syntax": "bindl = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindl = , XF86AudioPlay, exec, playerctl play-pause"
+  },
+  {
+    "command": "bindle",
+    "description": "Locked and Repeat binder. Combination of bindl and binde.",
+    "syntax": "bindle = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindle = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+  },
+  {
+    "command": "bindn",
+    "description": "Non-consuming binder. The key event will be passed to the next binder even if it matches this one.",
+    "syntax": "bindn = [mods], [key], [dispatcher], [params]",
+    "help": "Ej: bindn = ALT, G, togglegroup"
+  }
+]

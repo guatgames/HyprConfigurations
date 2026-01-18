@@ -35,13 +35,15 @@ public class HyprBindingsController implements Initializable {
     @FXML
     Button applyButton;
 
-    private void reloadCards( ArrayList<String[]> array ){
+    FlowPane space = new FlowPane();
+
+    private void reloadBinds( ArrayList<String[]> array ){
     }
 
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
-        FlowPane space = new FlowPane();
+
         space.setHgap(5);
         space.setVgap(15);
 
@@ -71,6 +73,19 @@ public class HyprBindingsController implements Initializable {
 
     }
     
-    
+    @FXML
+    public void addNewBind(){
+
+        List<HyprDispatcher> dispatcherList = ConfigLoader.loadDispatchers(
+                "src/org/guatgames/docs/dispatchers.json"
+        );
+
+        BindComponent bind = new BindComponent();
+
+        bind.enableAutocomplete(dispatcherList);
+
+        space.getChildren().add(bind);
+
+    }
     
 }
