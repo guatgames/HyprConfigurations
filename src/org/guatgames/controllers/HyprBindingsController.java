@@ -1,10 +1,8 @@
 
 package org.guatgames.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,13 +13,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import org.guatgames.components.BindComponent;
 import org.guatgames.objects.binds.HyprBind;
-import org.guatgames.objects.binds.HyprDispatcher;
+import org.guatgames.objects.binds.HyprBindInfo;
 import org.guatgames.system.ConfigLoader;
 import org.guatgames.system.HyprConfigReader;
 import org.guatgames.system.HyprConfigWriter;
 import org.guatgames.system.Loader;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 /**
  *
@@ -49,14 +45,18 @@ public class HyprBindingsController implements Initializable {
 
         HyprConfigReader reader = new HyprConfigReader();
 
-        List<HyprDispatcher> dispatcherList = ConfigLoader.loadDispatchers(
+        List<HyprBindInfo> bindTypeList = ConfigLoader.loadDispatchers(
+                "src/org/guatgames/docs/bindTypes.json"
+        );
+
+        List<HyprBindInfo> dispatcherList = ConfigLoader.loadDispatchers(
                 "src/org/guatgames/docs/dispatchers.json"
         );
 
         for(HyprBind i : reader.getBinds("src/org/guatgames/system/hyprland.conf")){
             BindComponent bind = new BindComponent(i.getBind(),i.getModifier(),i.getKey(),i.getDispatcher(),i.getParams());
 
-            bind.enableAutocomplete(dispatcherList);
+            bind.enableAutocomplete(bindTypeList,dispatcherList);
 
             space.getChildren().add(bind);
         }
@@ -76,13 +76,17 @@ public class HyprBindingsController implements Initializable {
     @FXML
     public void addNewBind(){
 
-        List<HyprDispatcher> dispatcherList = ConfigLoader.loadDispatchers(
+        List<HyprBindInfo> bindTypeList = ConfigLoader.loadDispatchers(
+                "src/org/guatgames/docs/bindTypes.json"
+        );
+
+        List<HyprBindInfo> dispatcherList = ConfigLoader.loadDispatchers(
                 "src/org/guatgames/docs/dispatchers.json"
         );
 
         BindComponent bind = new BindComponent();
 
-        bind.enableAutocomplete(dispatcherList);
+        bind.enableAutocomplete(bindTypeList,dispatcherList);
 
         space.getChildren().add(bind);
 

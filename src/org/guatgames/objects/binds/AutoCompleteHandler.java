@@ -7,19 +7,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
-import org.guatgames.objects.binds.HyprDispatcher;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class AutoCompleteHandler {
 
-    public static void setup(TextField textField, List<HyprDispatcher> data) {
+    public static void setup(TextField textField, List<HyprBindInfo> dispatchers) {
         // List of options window
         ContextMenu popupMenu = new ContextMenu();
-        ListView<HyprDispatcher> listView = new ListView<>();
+        ListView<HyprBindInfo> listView = new ListView<>();
 
         popupMenu.setStyle("-fx-background-color: #002b36; -fx-border-radius: 5;");
 
@@ -39,7 +37,7 @@ public class AutoCompleteHandler {
         // --- CUSTOM CELL FACTORY (Command + little description) ---
         listView.setCellFactory(lv -> new ListCell<>() {
             @Override
-            protected void updateItem(HyprDispatcher item, boolean empty) {
+            protected void updateItem(HyprBindInfo item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -78,7 +76,7 @@ public class AutoCompleteHandler {
                 return;
             }
 
-            List<HyprDispatcher> filtered = data.stream()
+            List<HyprBindInfo> filtered = dispatchers.stream()
                     .filter(d -> d.toString().toLowerCase().contains(newVal.toLowerCase()))
                     .collect(Collectors.toList());
 
@@ -122,8 +120,8 @@ public class AutoCompleteHandler {
     }
 
     // Write the selected option in the TextField
-    private static void applySelection(TextField tf, ListView<HyprDispatcher> lv, ContextMenu cm, Popup dp) {
-        HyprDispatcher selected = lv.getSelectionModel().getSelectedItem();
+    private static void applySelection(TextField tf, ListView<HyprBindInfo> lv, ContextMenu cm, Popup dp) {
+        HyprBindInfo selected = lv.getSelectionModel().getSelectedItem();
         if (selected != null) {
             tf.setText(selected.toString());
             cm.hide();

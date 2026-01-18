@@ -5,14 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.guatgames.objects.binds.AutoCompleteHandler;
-import org.guatgames.objects.binds.HyprDispatcher;
+import org.guatgames.objects.binds.HyprBindInfo;
 
 import java.util.List;
 
@@ -88,7 +86,8 @@ public class BindComponent extends VBox { // Cambiar a VBox ayuda al auto-layout
     }
 
     // This will have autocomplet for all fields except params
-    public void enableAutocomplete(List<HyprDispatcher> dispatchers) {
+    public void enableAutocomplete(List<HyprBindInfo> binds, List<HyprBindInfo> dispatchers) {
+        AutoCompleteHandler.setup(this.bindField, binds);
         AutoCompleteHandler.setup(this.dispatcherField, dispatchers);
     }
 

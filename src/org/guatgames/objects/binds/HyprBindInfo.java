@@ -2,7 +2,7 @@ package org.guatgames.objects.binds;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class HyprDispatcher {
+public class HyprBindInfo {
     @JsonProperty("command")
     private String command;
     @JsonProperty("description")
@@ -24,10 +24,10 @@ public class HyprDispatcher {
                 description + "\n\n" + help;
     }
 
-    public HyprDispatcher() {
+    public HyprBindInfo() {
     }
 
-    public HyprDispatcher(String command, String description, String syntax, String help) {
+    public HyprBindInfo(String command, String description, String syntax, String help) {
         this.command = command;
         this.description = description;
         this.syntax = syntax;
