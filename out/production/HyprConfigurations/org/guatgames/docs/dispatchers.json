@@ -1,20 +1,140 @@
 [
   {
     "command": "exec",
-    "description": "Ejecuta una aplicación externa.",
-    "syntax": "exec, comando",
-    "help": "Ejemplo: exec, kitty o exec, wofi --show drun"
+    "description": "executes a shell command",
+    "syntax": "exec, [rules] command",
+    "help": "Ej: exec, [float;] kitty or exec, [workspace 2] wofi --show drun"
+  },
+  {
+    "command": "execr",
+    "description": "executes a raw shell command (does not support rules)",
+    "syntax": "execr, command",
+    "help": "Ej: execr, $filemanager or execr, brave"
+  },
+  {
+    "command": "pass",
+    "description": "passes the key (with mods) to a specified window",
+    "syntax": "pass, window",
+    "help": "Ej: pass, ^(discord)$"
   },
   {
     "command": "killactive",
-    "description": "Cierra la ventana activa.",
+    "description": "closes (not kills) the active window",
     "syntax": "killactive",
-    "help": "No requiere parámetros adicionales."
+    "help": "Ej: killactive"
+  },
+  {
+    "command": "closewindow",
+    "description": "closes a specified window",
+    "syntax": "closewindow, window",
+    "help": "Ej: closewindow, address:0x13371337"
+  },
+  {
+    "command": "workspace",
+    "description": "changes the workspace",
+    "syntax": "workspace, workspace",
+    "help": "Ej: workspace, 3 or workspace, name:Web or workspace, e+1"
   },
   {
     "command": "movetoworkspace",
-    "description": "Mueve la ventana al escritorio especificado.",
-    "syntax": "movetoworkspace, ID",
-    "help": "ID puede ser un número (1-10) o un nombre."
+    "description": "moves the focused window to a workspace",
+    "syntax": "movetoworkspace, workspace OR workspace,window",
+    "help": "Ej: movetoworkspace, 2 or movetoworkspace, special:mail,address:0x123"
+  },
+  {
+    "command": "movetoworkspacesilent",
+    "description": "moves the focused window to a workspace without switching to it",
+    "syntax": "movetoworkspacesilent, workspace OR workspace,window",
+    "help": "Ej: movetoworkspacesilent, 4"
+  },
+  {
+    "command": "togglefloating",
+    "description": "toggles the current window's floating state",
+    "syntax": "togglefloating, [window]",
+    "help": "Ej: togglefloating or togglefloating, active"
+  },
+  {
+    "command": "fullscreen",
+    "description": "sets the focused window's fullscreen mode",
+    "syntax": "fullscreen, mode [action]",
+    "help": "Ej: fullscreen, 0 (0:fullscreen, 1:maximize)"
+  },
+  {
+    "command": "dpms",
+    "description": "sets monitors' DPMS status (Do not use with keybind directly)",
+    "syntax": "dpms, state [monitor]",
+    "help": "Ej: dpms, off or dpms, on DP-1"
+  },
+  {
+    "command": "pin",
+    "description": "pins a window (shows on all workspaces) - floating only",
+    "syntax": "pin, [window]",
+    "help": "Ej: pin, active"
+  },
+  {
+    "command": "movefocus",
+    "description": "moves the focus in a direction",
+    "syntax": "movefocus, direction",
+    "help": "Ej: movefocus, l (l, r, u, d)"
+  },
+  {
+    "command": "movewindow",
+    "description": "moves the active window in a direction or to a monitor",
+    "syntax": "movewindow, direction OR mon:monitor [silent]",
+    "help": "Ej: movewindow, r or movewindow, mon:DP-3 silent"
+  },
+  {
+    "command": "swapwindow",
+    "description": "swaps the active window with another in a direction or specific window",
+    "syntax": "swapwindow, direction OR window",
+    "help": "Ej: swapwindow, u or swapwindow, class:kitty"
+  },
+  {
+    "command": "centerwindow",
+    "description": "centers the active window (floating only)",
+    "syntax": "centerwindow, [mode]",
+    "help": "Ej: centerwindow or centerwindow, 1 (respects reserved area)"
+  },
+  {
+    "command": "resizeactive",
+    "description": "resizes the active window",
+    "syntax": "resizeactive, resizeparams",
+    "help": "Ej: resizeactive, 10 -10 or resizeactive, exact 1280 720"
+  },
+  {
+    "command": "moveactive",
+    "description": "moves the active window (offset)",
+    "syntax": "moveactive, resizeparams",
+    "help": "Ej: moveactive, 20 20"
+  },
+  {
+    "command": "cyclenext",
+    "description": "focuses the next window",
+    "syntax": "cyclenext, [prev] [tiled/floating] [visible] [hist]",
+    "help": "Ej: cyclenext or cyclenext, prev floating"
+  },
+  {
+    "command": "togglespecialworkspace",
+    "description": "toggles a special workspace (scratchpad) on/off",
+    "syntax": "togglespecialworkspace, [name]",
+    "help": "Ej: togglespecialworkspace or togglespecialworkspace, discord"
+  },
+  {
+    "command": "togglegroup",
+    "description": "toggles the current active window into a group",
+    "syntax": "togglegroup",
+    "help": "Ej: togglegroup"
+  },
+  {
+    "command": "changegroupactive",
+    "description": "switches to the next/previous window in a group",
+    "syntax": "changegroupactive, b|f|index",
+    "help": "Ej: changegroupactive, f (forward) or changegroupactive, b (back)"
+  },
+  {
+    "command": "exit",
+    "description": "exits the compositor immediately",
+    "syntax": "exit",
+    "help": "Ej: exit (Warning: Use hyprshutdown for a cleaner exit)"
   }
 ]

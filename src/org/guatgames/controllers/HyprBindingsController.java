@@ -16,6 +16,7 @@ import javafx.scene.layout.FlowPane;
 import org.guatgames.components.BindComponent;
 import org.guatgames.objects.binds.HyprBind;
 import org.guatgames.objects.binds.HyprDispatcher;
+import org.guatgames.system.ConfigLoader;
 import org.guatgames.system.HyprConfigReader;
 import org.guatgames.system.HyprConfigWriter;
 import org.guatgames.system.Loader;
@@ -46,16 +47,14 @@ public class HyprBindingsController implements Initializable {
 
         HyprConfigReader reader = new HyprConfigReader();
 
-        List<HyprDispatcher> listaDispatchers = Arrays.asList(
-                new HyprDispatcher("exec", "Ejecuta un proceso", "exec, [comando]", "Ej: exec, kitty"),
-                new HyprDispatcher("movewindow", "Mueve la ventana", "movewindow, [dirección]", "Direcciones: l, r, u, d"),
-                new HyprDispatcher("killactive", "Cierra la ventana actual", "killactive", "No requiere parámetros")
+        List<HyprDispatcher> dispatcherList = ConfigLoader.loadDispatchers(
+                "src/org/guatgames/docs/dispatchers.json"
         );
 
         for(HyprBind i : reader.getBinds("src/org/guatgames/system/hyprland.conf")){
             BindComponent bind = new BindComponent(i.getBind(),i.getModifier(),i.getKey(),i.getDispatcher(),i.getParams());
 
-            bind.enableAutocomplete(listaDispatchers);
+            bind.enableAutocomplete(dispatcherList);
 
             space.getChildren().add(bind);
         }

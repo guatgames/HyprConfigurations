@@ -1,9 +1,15 @@
 package org.guatgames.objects.binds;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class HyprDispatcher {
+    @JsonProperty("command")
     private String command;
+    @JsonProperty("description")
     private String description;
+    @JsonProperty("syntax")
     private String syntax;
+    @JsonProperty("help")
     private String help;
 
     // Getters y Setters
