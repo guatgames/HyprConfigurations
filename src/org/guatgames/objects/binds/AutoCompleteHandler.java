@@ -26,7 +26,8 @@ public class AutoCompleteHandler {
 
         Label docLabel = new Label();
         docLabel.setStyle("-fx-background-color: #002b36; -fx-text-fill: #93a1a1; -fx-padding: 10; " +
-                "-fx-border-color: #00e6cf; -fx-border-width: 1; -fx-max-width: 300; -fx-border-radius: 5;");
+                "-fx-border-width: 1; -fx-max-width: 500; -fx-border-radius: 5;" +
+                "-fx-background-radius: 5;");
         docPopup.getContent().add(docLabel);
 
         listView.setPrefWidth(450);

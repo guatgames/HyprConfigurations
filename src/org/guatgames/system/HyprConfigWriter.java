@@ -21,16 +21,25 @@ public class HyprConfigWriter {
             // Escribir los binds
             for (Node bind : binds) {
                 if (bind instanceof BindComponent){
-                    String line = String.format("%s = %s, %s, %s, %s",
-                            // Cast beacause bind is a Node
-                            ((BindComponent) bind).getBindField().getText(),
-                            ((BindComponent) bind).getModifierField().getText(),
-                            ((BindComponent) bind).getKeyField().getText(),
-                            ((BindComponent) bind).getDispatcherField().getText(),
-                            ((BindComponent) bind).getParamField().getText());
 
-                    writer.write(line);
-                    writer.newLine();
+                    // Cast beacause bind is a Node
+                    BindComponent b = (BindComponent) bind;
+
+                    if (!b.getBindField().getText().isEmpty() && !b.getModifierField().getText().isEmpty()
+                    && !b.getKeyField().getText().isEmpty() && !b.getDispatcherField().getText().isEmpty()
+                    && !b.getParamField().getText().isEmpty()){
+
+                        String line = String.format("%s = %s, %s, %s, %s",
+                                b.getBindField().getText(),
+                                b.getModifierField().getText(),
+                                b.getKeyField().getText(),
+                                b.getDispatcherField().getText(),
+                                b.getParamField().getText());
+
+                        writer.write(line);
+                        writer.newLine();
+
+                    }
                 }
             }
 

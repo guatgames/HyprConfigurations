@@ -90,6 +90,10 @@ public class HyprBindingsController implements Initializable {
 
         space.getChildren().add(bind);
 
+        bindsContainer.applyCss();
+        bindsContainer.layout();
+        bindsContainer.setVvalue(1);
+
     }
     
 }
