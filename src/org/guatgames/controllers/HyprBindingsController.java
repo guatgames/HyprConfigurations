@@ -46,26 +46,7 @@ public class HyprBindingsController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
-        floatingContainer.setTranslateX(-100);
-        sectionContainer.setTranslateX(-50);
-
-        floatingContainer.setOnMouseEntered(e -> {
-            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
-            transition.setToX(0);
-            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
-            transition2.setToX(0);
-            transition.play();
-            transition2.play();
-        });
-
-        floatingContainer.setOnMouseExited(e -> {
-            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
-            transition.setToX(-100);
-            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
-            transition2.setToX(-100);
-            transition.play();
-            transition2.play();
-        });
+        floatingMenu();
 
         space.setHgap(5);
         space.setVgap(15);
@@ -121,6 +102,29 @@ public class HyprBindingsController implements Initializable {
         bindsContainer.layout();
         bindsContainer.setVvalue(1);
 
+    }
+
+    public void floatingMenu(){
+        floatingContainer.setTranslateX(-100);
+        sectionContainer.setTranslateX(-50);
+
+        floatingContainer.setOnMouseEntered(e -> {
+            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
+            transition.setToX(0);
+            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
+            transition2.setToX(0);
+            transition.play();
+            transition2.play();
+        });
+
+        floatingContainer.setOnMouseExited(e -> {
+            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
+            transition.setToX(-100);
+            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
+            transition2.setToX(-100);
+            transition.play();
+            transition2.play();
+        });
     }
     
 }
