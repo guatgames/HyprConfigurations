@@ -5,12 +5,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import org.guatgames.components.BindComponent;
 import org.guatgames.objects.binds.HyprBind;
 import org.guatgames.objects.binds.HyprBindInfo;
@@ -31,6 +35,9 @@ public class HyprBindingsController implements Initializable {
     @FXML
     Button applyButton;
 
+    @FXML
+    Pane floatingContainer, sectionContainer;
+
     FlowPane space = new FlowPane();
 
     private void reloadBinds( ArrayList<String[]> array ){
@@ -39,6 +46,26 @@ public class HyprBindingsController implements Initializable {
     @FXML
     public void initialize(URL url, ResourceBundle rb) {
 
+        floatingContainer.setTranslateX(-100);
+        sectionContainer.setTranslateX(-50);
+
+        floatingContainer.setOnMouseEntered(e -> {
+            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
+            transition.setToX(0);
+            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
+            transition2.setToX(0);
+            transition.play();
+            transition2.play();
+        });
+
+        floatingContainer.setOnMouseExited(e -> {
+            TranslateTransition transition = new TranslateTransition(Duration.millis(200),floatingContainer);
+            transition.setToX(-100);
+            TranslateTransition transition2 = new TranslateTransition(Duration.millis(200),sectionContainer);
+            transition2.setToX(-100);
+            transition.play();
+            transition2.play();
+        });
 
         space.setHgap(5);
         space.setVgap(15);
