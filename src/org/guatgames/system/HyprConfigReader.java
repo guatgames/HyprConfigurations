@@ -42,4 +42,6 @@ public class HyprConfigReader {
         }
         return binds;
     }
+
+
 }
